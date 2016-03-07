@@ -16,8 +16,8 @@
       <excludeFolder url="file://$MODULE_DIR$/../TourExperienceBackend/.bundle" />
       <excludeFolder url="file://$MODULE_DIR$/../TourExperienceBackend/components" />
       <excludeFolder url="file://$MODULE_DIR$/../TourExperienceBackend/public/system" />
-      <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/../TourExperienceBackend/vendor/bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="rbenv: 2.2.3" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
