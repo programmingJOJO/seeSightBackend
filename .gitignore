@@ -23,4 +23,6 @@
 .ruby-version
 .idea
 .gitignore
+config/database.yml
 
+.idea/TourExperienceBackend.iml
