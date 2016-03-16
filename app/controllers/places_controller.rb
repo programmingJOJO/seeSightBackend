@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :update, :destroy]
+  before_action :set_place, only: [:show, :challenges, :update, :destroy]
 
   # GET /places
   def index
@@ -11,6 +11,11 @@ class PlacesController < ApplicationController
   # GET /places/1
   def show
     render json: @place
+  end
+
+  def challenges
+    @challenges = Challenge.where(place_id: params[:id]).to_json({:include => [:challenge_solutions, :hints]})
+    render json: @challenges
   end
 
   # POST /places

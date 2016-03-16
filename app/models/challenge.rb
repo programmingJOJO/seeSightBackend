@@ -4,4 +4,7 @@ class Challenge < ApplicationRecord
   has_many :challenges_users, dependent: :destroy
   has_many :users, through: :challenges_users
   belongs_to :place
+
+  validates_presence_of :question
+  validates :difficulty, numericality: { only_integer: true }
 end

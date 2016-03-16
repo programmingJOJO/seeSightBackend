@@ -10,7 +10,7 @@ class ToursController < ApplicationController
 
   # GET /tours/1
   def show
-    render json: @tour.to_json({:include => [{ :tour_places => { :include => :place }}, :tags]})
+    render json: @tour.to_json({:include => [{ :tour_places => { :include => :place }}, :tags, :city]})
   end
 
   # POST /tours
