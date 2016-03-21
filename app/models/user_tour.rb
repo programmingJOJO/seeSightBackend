@@ -4,5 +4,9 @@ class UserTour < ApplicationRecord
   belongs_to :tour
   belongs_to :user
 
-  validates_inclusion_of :completed, in: [true, false]
+  validates_inclusion_of :completed, :archived, in: [true, false]
+
+  scope :not_archived, -> {
+    where(archived: false)
+  }
 end

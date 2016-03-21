@@ -1,4 +1,5 @@
 class ChallengeProtocolsController < ApplicationController
+  include Authentication
   before_action :set_challenge_protocol, only: [:show, :update, :destroy]
 
   # GET /challenge_protocols
