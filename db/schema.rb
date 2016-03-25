@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20160321213618) do
 
+  create_table "challenge_protocols", force: :cascade do |t|
+    t.integer  "user_tour_challenge_id", null: false
+    t.integer  "state"
+    t.integer  "hint_id"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "answer"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "challenge_protocols", ["state"], name: "index_challenge_protocols_on_state"
+  add_index "challenge_protocols", ["user_tour_challenge_id"], name: "index_challenge_protocols_on_user_tour_challenge_id"
+
   create_table "challenge_solutions", force: :cascade do |t|
     t.integer  "challenge_id",                null: false
     t.string   "answer",                      null: false
@@ -39,20 +53,6 @@ ActiveRecord::Schema.define(version: 20160321213618) do
   add_index "challenges", ["difficulty"], name: "index_challenges_on_difficulty"
   add_index "challenges", ["lat", "lng"], name: "index_challenges_on_lat_and_lng"
   add_index "challenges", ["place_id"], name: "index_challenges_on_place_id"
-
-  create_table "challenges_protocols", force: :cascade do |t|
-    t.integer  "user_challenge_id", null: false
-    t.integer  "state"
-    t.integer  "hint_id"
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "answer"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "challenges_protocols", ["state"], name: "index_challenges_protocols_on_state"
-  add_index "challenges_protocols", ["user_challenge_id"], name: "index_challenges_protocols_on_user_challenge_id"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -154,19 +154,19 @@ ActiveRecord::Schema.define(version: 20160321213618) do
   add_index "tours", ["city_id"], name: "index_tours_on_city_id"
   add_index "tours", ["rating"], name: "index_tours_on_rating"
 
-  create_table "user_challenges", force: :cascade do |t|
-    t.integer  "challenge_id", null: false
-    t.integer  "user_id",      null: false
-    t.integer  "state"
+  create_table "user_tour_challenges", force: :cascade do |t|
+    t.integer  "challenge_id",             null: false
+    t.integer  "user_tour_id",             null: false
+    t.integer  "state",        default: 0, null: false
     t.float    "lat"
     t.float    "lng"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "user_challenges", ["challenge_id"], name: "index_user_challenges_on_challenge_id"
-  add_index "user_challenges", ["state"], name: "index_user_challenges_on_state"
-  add_index "user_challenges", ["user_id"], name: "index_user_challenges_on_user_id"
+  add_index "user_tour_challenges", ["challenge_id"], name: "index_user_tour_challenges_on_challenge_id"
+  add_index "user_tour_challenges", ["state"], name: "index_user_tour_challenges_on_state"
+  add_index "user_tour_challenges", ["user_tour_id"], name: "index_user_tour_challenges_on_user_tour_id"
 
   create_table "user_tour_places", force: :cascade do |t|
     t.integer  "place_id",                     null: false

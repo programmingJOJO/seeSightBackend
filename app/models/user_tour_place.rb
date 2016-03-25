@@ -9,17 +9,7 @@ class UserTourPlace < ApplicationRecord
   private
 
     def create_user_challenge
-      puts 'USER'
-      puts 'USER'
-      puts self.user_tour.user_id
-      puts 'USER'
-      puts 'USER'
-      puts 'ANY'
-      puts 'ANY'
-      puts self.place.challenges.any?
-      puts 'ANY'
-      puts 'ANY'
-      UserChallenge.create!(user_id: self.user_tour.user_id, challenge_id: self.place.challenges.first.id) if self.place.challenges.any?
+      UserTourChallenge.create!(user_tour_id: self.user_tour.id, challenge_id: self.place.challenges.first.id) if self.place.challenges.any?
     end
 
 end

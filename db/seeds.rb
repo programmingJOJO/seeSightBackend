@@ -92,11 +92,11 @@ p7 = Place.create(name: 'An den Fleischbänken', description: desc, place_type: 
 
 tour.places << p1
 tour.places << p2
-tour.places << p3
-tour.places << p4
-tour.places << p5
-tour.places << p6
-tour.places << p7
+#tour.places << p3
+#tour.places << p4
+#tour.places << p5
+#tour.places << p6
+#tour.places << p7
 tour.save!
 
 
