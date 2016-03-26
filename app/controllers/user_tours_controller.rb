@@ -18,7 +18,7 @@ class UserToursController < ApplicationController
   def create
     UserTour.where(tour_id: params[:tour_id], user: current_user, archived: false).each{|ut| ut.archived = true; ut.save}
     @user_tour = UserTour.new(tour_id: params[:tour_id], user: current_user)
-    @user_tour.places=(Tour.find(params[:tour_id]).places)
+    #@user_tour.places=(Tour.find(params[:tour_id]).places)
     if @user_tour.save
       render json: @user_tour.to_json({include: [:user_tour_places, :user_tour_challenges] })
     else

@@ -1,10 +1,10 @@
-class UserTourChallengeController < ApplicationController
+class UserTourChallengesController < ApplicationController
   include Authentication
-  before_action :set_tour_challenge, only: [:show, :update]
+  before_action :set_user_tour_challenge, only: [:show, :update]
 
   # GET /tours
   def index
-    @user_tour_challenges = UserTourChallenge.all
+    @user_tour_challenges = UserTourChallenge.joins(:user_tour).where(user_tours: { user_id: current_user })
 
     render json: @user_tour_challenges
   end
@@ -26,6 +26,13 @@ class UserTourChallengeController < ApplicationController
   # PATCH/PUT /tours/1
   def update
     if @user_tour_challenge.update(user_tour_challenge_params)
+      if @user_tour_challenge.challenge.challenge_solutions.where(truth: true).first.answer == params[:answer]
+        @user_tour_challenge.solve
+      elsif params[:hint_id].present?
+        @user_tour_challenge.take_hint
+      else
+        @user_tour_challenge.false_answered
+      end
       render json: @user_tour_challenge
     else
       render json: @user_tour_challenge.errors, status: :unprocessable_entity
@@ -40,6 +47,6 @@ class UserTourChallengeController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_tour_challenge_params
-      params.require(:user_tour_challenge).permit(:state)
+      params.require(:user_tour_challenge).permit(:lat, :lng, :hint_id, :answer)
     end
 end

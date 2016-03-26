@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, param: :token, except: [:destroy]
   resources :user_tours, except: [:destroy]
   resources :user_tour_places, except: [:destroy]
+  resources :user_tour_challenges, except: [:destroy]
   resources :challenges, except: [:destroy] do
     collection do
       get :place

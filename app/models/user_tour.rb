@@ -7,8 +7,14 @@ class UserTour < ApplicationRecord
   belongs_to :user
 
   validates_inclusion_of :completed, :archived, in: [true, false]
+  after_save :create_user_tour_places, on: :create
 
   scope :not_archived, -> {
     where(archived: false)
   }
+
+  private
+  def create_user_tour_places
+    self.places=(self.tour.places)
+  end
 end

@@ -21,6 +21,8 @@ class CreateChallenges < ActiveRecord::Migration[5.0]
       t.integer :state, null: false, default: 0
       t.float :lat
       t.float :lng
+      t.integer :hint_id
+      t.string :answer
 
       t.timestamps
     end

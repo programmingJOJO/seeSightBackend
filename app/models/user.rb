@@ -5,10 +5,16 @@ class User < ApplicationRecord
 
   validates_presence_of :role
   before_create -> { self.token = SecureRandom.hex unless self.token.present? }
+  after_save :create_user_tours, on: :create
 
   enum role: [:guest, :registered_user]
 
   def self.new_guest
     new { |u| u.guest! }
   end
+
+  private
+    def create_user_tours
+      self.tours=(Tour.all)
+    end
 end

@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.integer  "state",        default: 0, null: false
     t.float    "lat"
     t.float    "lng"
+    t.integer  "hint_id"
+    t.string   "answer"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
