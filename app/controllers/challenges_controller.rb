@@ -5,7 +5,7 @@ class ChallengesController < ApplicationController
   def index
     @challenges = Challenge.all
 
-    render json: @challenges
+    render json: @challenges.to_json({include: :hints})
   end
 
   # GET /challenges/1

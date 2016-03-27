@@ -4,7 +4,7 @@ class UserTourChallengesController < ApplicationController
 
   # GET /tours
   def index
-    @user_tour_challenges = UserTourChallenge.joins(:user_tour).where(user_tours: { user_id: current_user })
+    @user_tour_challenges = UserTourChallenge.joins(:user_tour).where(user_tours: { user_id: current_user, archived: false })
 
     render json: @user_tour_challenges
   end

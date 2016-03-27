@@ -22,6 +22,8 @@ challenge = p1.challenges.first
 challenge.challenge_solutions.create!(answer: 'Die Stadtmauer', truth: false)
 challenge.challenge_solutions.create!(answer: 'Den Schafott', truth: false)
 challenge.challenge_solutions.create!(answer: 'Den Burggraben', truth: true)
+challenge.hints.create!(description: 'Wenn du die Hufeisen findest, ist die Antwort ganz leicht.')
+
 
 # PLACE Tiergärtnerplatz
 desc = 'Nachdem du sich vom Aufstieg erholt und den Ausblick genossen haben, geht es weiter in Richtung Tiergärtnerplatz. ' +
@@ -101,7 +103,9 @@ tour.save!
 
 
 Tag.create(name: 'historisch')
-Tag.create(name: 'Altstad')
+Tag.create(name: 'Altstadt')
+Tag.create(name: 'Burgen')
+Tag.create(name: 'Touristenattraktion')
 
 tour.tags << Tag.all
 tour.save!
