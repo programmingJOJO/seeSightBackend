@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: current_user
+    render json: current_user.to_json({include: :tags})
   end
 
   # POST /users
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
+      @user.tag_ids=(params[:tag_ids]) if params[:tag_ids].present?
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity

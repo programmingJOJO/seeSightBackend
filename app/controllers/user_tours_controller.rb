@@ -43,6 +43,6 @@ class UserToursController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_tour_params
-      params.require(:user_tour).permit(:completed, :rating, :archived)
+      params.require(:user_tour).permit(:completed, :rating, :archived, )
     end
 end

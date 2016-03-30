@@ -33,11 +33,6 @@ class TagsController < ApplicationController
     end
   end
 
-  # DELETE /tags/1
-  def destroy
-    @tag.destroy
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
@@ -46,6 +41,6 @@ class TagsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tag_params
-      params.fetch(:tag, {})
+      params.require(:tag).permit(:name)
     end
 end
