@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = params[:user] ? User.new(params[:user]) : User.new_guest
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    @user = current_user
     if @user.update(user_params)
       @user.tag_ids=(params[:tag_ids]) if params[:tag_ids].present?
       render json: @user
@@ -38,6 +39,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :token, :role)
+      params.require(:user).permit(:username, :token, :role, tag_ids: [])
     end
 end
