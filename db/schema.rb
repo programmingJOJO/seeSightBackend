@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160321213618) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "challenge_protocols", force: :cascade do |t|
     t.integer  "user_tour_challenge_id", null: false
     t.integer  "state"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "challenge_protocols", ["state"], name: "index_challenge_protocols_on_state"
-  add_index "challenge_protocols", ["user_tour_challenge_id"], name: "index_challenge_protocols_on_user_tour_challenge_id"
+  add_index "challenge_protocols", ["state"], name: "index_challenge_protocols_on_state", using: :btree
+  add_index "challenge_protocols", ["user_tour_challenge_id"], name: "index_challenge_protocols_on_user_tour_challenge_id", using: :btree
 
   create_table "challenge_solutions", force: :cascade do |t|
     t.integer  "challenge_id",                null: false
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "challenge_solutions", ["challenge_id"], name: "index_challenge_solutions_on_challenge_id"
-  add_index "challenge_solutions", ["truth"], name: "index_challenge_solutions_on_truth"
+  add_index "challenge_solutions", ["challenge_id"], name: "index_challenge_solutions_on_challenge_id", using: :btree
+  add_index "challenge_solutions", ["truth"], name: "index_challenge_solutions_on_truth", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
@@ -50,9 +53,9 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",                     null: false
   end
 
-  add_index "challenges", ["difficulty"], name: "index_challenges_on_difficulty"
-  add_index "challenges", ["lat", "lng"], name: "index_challenges_on_lat_and_lng"
-  add_index "challenges", ["place_id"], name: "index_challenges_on_place_id"
+  add_index "challenges", ["difficulty"], name: "index_challenges_on_difficulty", using: :btree
+  add_index "challenges", ["lat", "lng"], name: "index_challenges_on_lat_and_lng", using: :btree
+  add_index "challenges", ["place_id"], name: "index_challenges_on_place_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -66,9 +69,9 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "cities", ["country_id"], name: "index_cities_on_country_id"
-  add_index "cities", ["name"], name: "index_cities_on_name"
-  add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true
+  add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
+  add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
+  add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "countries", force: :cascade do |t|
     t.string   "name",       null: false
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "hints", ["challenge_id"], name: "index_hints_on_challenge_id"
+  add_index "hints", ["challenge_id"], name: "index_hints_on_challenge_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.integer  "city_id",                   null: false
@@ -117,8 +120,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "tags_tours", ["tag_id"], name: "index_tags_tours_on_tag_id"
-  add_index "tags_tours", ["tour_id"], name: "index_tags_tours_on_tour_id"
+  add_index "tags_tours", ["tag_id"], name: "index_tags_tours_on_tag_id", using: :btree
+  add_index "tags_tours", ["tour_id"], name: "index_tags_tours_on_tour_id", using: :btree
 
   create_table "tags_users", id: false, force: :cascade do |t|
     t.integer  "tag_id",     null: false
@@ -127,8 +130,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "tags_users", ["tag_id"], name: "index_tags_users_on_tag_id"
-  add_index "tags_users", ["user_id"], name: "index_tags_users_on_user_id"
+  add_index "tags_users", ["tag_id"], name: "index_tags_users_on_tag_id", using: :btree
+  add_index "tags_users", ["user_id"], name: "index_tags_users_on_user_id", using: :btree
 
   create_table "tour_places", force: :cascade do |t|
     t.integer  "place_id",                     null: false
@@ -138,8 +141,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "tour_places", ["place_id"], name: "index_tour_places_on_place_id"
-  add_index "tour_places", ["tour_id"], name: "index_tour_places_on_tour_id"
+  add_index "tour_places", ["place_id"], name: "index_tour_places_on_place_id", using: :btree
+  add_index "tour_places", ["tour_id"], name: "index_tour_places_on_tour_id", using: :btree
 
   create_table "tours", force: :cascade do |t|
     t.string   "name"
@@ -151,8 +154,8 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "tours", ["city_id"], name: "index_tours_on_city_id"
-  add_index "tours", ["rating"], name: "index_tours_on_rating"
+  add_index "tours", ["city_id"], name: "index_tours_on_city_id", using: :btree
+  add_index "tours", ["rating"], name: "index_tours_on_rating", using: :btree
 
   create_table "user_tour_challenges", force: :cascade do |t|
     t.integer  "challenge_id",             null: false
@@ -166,9 +169,9 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",               null: false
   end
 
-  add_index "user_tour_challenges", ["challenge_id"], name: "index_user_tour_challenges_on_challenge_id"
-  add_index "user_tour_challenges", ["state"], name: "index_user_tour_challenges_on_state"
-  add_index "user_tour_challenges", ["user_tour_id"], name: "index_user_tour_challenges_on_user_tour_id"
+  add_index "user_tour_challenges", ["challenge_id"], name: "index_user_tour_challenges_on_challenge_id", using: :btree
+  add_index "user_tour_challenges", ["state"], name: "index_user_tour_challenges_on_state", using: :btree
+  add_index "user_tour_challenges", ["user_tour_id"], name: "index_user_tour_challenges_on_user_tour_id", using: :btree
 
   create_table "user_tour_places", force: :cascade do |t|
     t.integer  "place_id",                     null: false
@@ -179,9 +182,9 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "user_tour_places", ["place_id"], name: "index_user_tour_places_on_place_id"
-  add_index "user_tour_places", ["user_tour_id"], name: "index_user_tour_places_on_user_tour_id"
-  add_index "user_tour_places", ["visited"], name: "index_user_tour_places_on_visited"
+  add_index "user_tour_places", ["place_id"], name: "index_user_tour_places_on_place_id", using: :btree
+  add_index "user_tour_places", ["user_tour_id"], name: "index_user_tour_places_on_user_tour_id", using: :btree
+  add_index "user_tour_places", ["visited"], name: "index_user_tour_places_on_visited", using: :btree
 
   create_table "user_tours", force: :cascade do |t|
     t.integer  "tour_id",                    null: false
@@ -193,9 +196,9 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.boolean  "archived",   default: false, null: false
   end
 
-  add_index "user_tours", ["completed"], name: "index_user_tours_on_completed"
-  add_index "user_tours", ["tour_id"], name: "index_user_tours_on_tour_id"
-  add_index "user_tours", ["user_id"], name: "index_user_tours_on_user_id"
+  add_index "user_tours", ["completed"], name: "index_user_tours_on_completed", using: :btree
+  add_index "user_tours", ["tour_id"], name: "index_user_tours_on_tour_id", using: :btree
+  add_index "user_tours", ["user_id"], name: "index_user_tours_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -209,6 +212,6 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "users", ["role"], name: "index_users_on_role"
+  add_index "users", ["role"], name: "index_users_on_role", using: :btree
 
 end
