@@ -4,10 +4,6 @@ city.update_attributes!(lat: 49.45052, lng: 11.08048)
 country.cities << city
 country.save!
 
-tour = Tour.create!(name: 'Altstadt-Tour', city: city, description: 'Diese Tour verläuft hauptsächlich in der Nürnberger Altstadt. Es sind nur kurze Wege von einem Ort zum Nächsten.')
-city.tours << tour
-city.save!
-
 # PLACE Kaiserburg
 desc = 'Über die Toranlage gelangt man in den äußeren Burghof - dort wird man einem einzigartigen Blick über die Altstadt belohnt! ' +
 'Du solltest auch einen Blick in den inneren Burgbereich werfen, der damals übrigens ausschließlich dem Kaiser während der Reichstage vorbehalten war. ' +
@@ -92,23 +88,38 @@ desc = 'Die Fleischbrücke ist nach dem Vorbild der Ponte die Rialot in Venedig 
     'Vom reichsstädtischen Fleischhaus aus dem Jahr 1571 sind nur noch die unteren Außenmauern orginal erhalten geblieben.'
 p7 = Place.create(name: 'An den Fleischbänken', description: desc, place_type: 0, city: city, lat: 49.453086, lng: 11.073051)
 
-tour.places << p1
-tour.places << p2
-#tour.places << p3
-#tour.places << p4
-#tour.places << p5
-#tour.places << p6
-#tour.places << p7
-tour.save!
+tour_1 = Tour.create!(name: 'Innenstad-Nord-Tour', city: city, description: 'Diese Tour verläuft hauptsächlich im Norden der Nürnberger Altstadt. Es sind nur kurze Wege von einem Ort zum Nächsten.')
+city.tours << tour_1
+tour_2 = Tour.create!(name: 'Pegnitz-Tour', city: city, description: 'Diese Tour zeigt interessante Gegenden entlang der Pegniz.')
+city.tours << tour_2
+city.save!
 
+tour_1.places << p1
+tour_1.places << p2
+tour_1.places << p3
+tour_1.save!
 
-Tag.create(name: 'historisch')
-Tag.create(name: 'Altstadt')
-Tag.create(name: 'Burgen')
-Tag.create(name: 'Touristenattraktion')
+tour_2.places << p4
+tour_2.places << p5
+tour_2.places << p6
+tour_2.places << p7
+tour_2.save!
 
-tour.tags << Tag.all
-tour.save!
+# Tags
+t1 = Tag.create(name: 'Fachwerkhäuser')
+t2 = Tag.create(name: 'Altstadt')
+t3 = Tag.create(name: 'Burgen')
+t4 = Tag.create(name: 'Flüsse')
+t5 = Tag.create(name: 'Brücken')
 
+tour_1.tags << t1
+tour_1.tags << t2
+tour_1.tags << t3
+tour_1.save!
+
+tour_2.tags << t2
+tour_2.tags << t4
+tour_2.tags << t5
+tour_2.save!
 
 

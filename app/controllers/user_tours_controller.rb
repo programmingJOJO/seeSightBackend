@@ -4,21 +4,20 @@ class UserToursController < ApplicationController
 
   # GET /tours
   def index
-    @user_tours = UserTour.where(user: current_user).not_archived.to_json({ include: :tour })
+    @user_tours = UserTour.where(user: current_user).not_archived.to_json({ include: { :tour => { :include => :tags } } })
 
     render json: @user_tours
   end
 
   # GET /tours/1
   def show
-    render json: @user_tour.to_json({include: [:user_tour_places, :user_tour_challenges] })
+    render json: @user_tour.to_json({include: [:user_tour_places, :user_tour_challenges, { :tour => { :include => :tags }}] })
   end
 
   # POST /tours
   def create
     UserTour.where(tour_id: params[:tour_id], user: current_user, archived: false).each{|ut| ut.archived = true; ut.save}
     @user_tour = UserTour.new(tour_id: params[:tour_id], user: current_user)
-    #@user_tour.places=(Tour.find(params[:tour_id]).places)
     if @user_tour.save
       render json: @user_tour.to_json({include: [:user_tour_places, :user_tour_challenges] })
     else
