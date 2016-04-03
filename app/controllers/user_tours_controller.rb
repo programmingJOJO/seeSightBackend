@@ -4,7 +4,7 @@ class UserToursController < ApplicationController
 
   # GET /tours
   def index
-    @user_tours = UserTour.where(user: current_user).not_archived.to_json({ include: { :tour => { :include => :tags } } })
+    @user_tours = UserTour.where(user: current_user).not_archived.to_json(methods: :rating, include: { :tour => { methods: :rating, :include => :tags } })
 
     render json: @user_tours
   end

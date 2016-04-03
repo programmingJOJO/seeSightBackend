@@ -7,4 +7,8 @@ class Tour < ApplicationRecord
   belongs_to :city
 
   validates_presence_of :name, :city_id
+
+  def rating
+    UserTour.not_archived.where(tour: self).average(:rating).nil? ? 3 : UserTour.not_archived.where(tour: self).average(:rating).ceil
+  end
 end

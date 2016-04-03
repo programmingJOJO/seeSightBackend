@@ -3,7 +3,8 @@ class ToursController < ApplicationController
 
   # GET /tours
   def index
-    @tours = Tour.all.to_json({:include => [{ :tour_places => { :include => :place }}, :tags, :city]})
+    #@tours = Tour.all.to_json(methods: :rating)
+    @tours = Tour.all.to_json({methods: :rating, :include => [{ :tour_places => { :include => :place }}, :tags, :city]})
 
     render json: @tours
   end

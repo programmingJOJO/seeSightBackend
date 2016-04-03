@@ -17,4 +17,8 @@ class UserTour < ApplicationRecord
   def create_user_tour_places
     self.places=(self.tour.places)
   end
+
+  def rating
+    UserTour.not_archived.where(tour: self.tour).average(:rating).nil? ? 3 : UserTour.not_archived.where(tour: self.tour).average(:rating).ceil
+  end
 end
