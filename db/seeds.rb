@@ -37,7 +37,7 @@ challenge.hints.create!(description: 'Der Nachname reicht bereits für eine korr
 desc = 'Etwa 20 historische Häuser haben hier den Krieg überlebt und geben eine Vorstellung vom ursprünglichen Aussehen vieler Altstadtstraßen. ' +
 'Wie der Name schon sagt, lebten in dieser Gasse vorwiegend Weißgerber, die mit Hilfe von Alaun (Kaliumaluminiumsulfat) feines Leder herstellten. ' +
     'Heute ist die Weißgerbergasse ein beliebtes Kneipenviertel.'
-p3 = Place.create(name: 'Weißgerbergasse', description: desc, place_type: 0, city: city, lat: 49.457447, lng: 11.074014)
+p3 = Place.create(name: 'Weißgerbergasse', description: desc, place_type: 0, city: city, lat: 49.455180, lng: 11.072795)
 c = 'An einer der Häuserfronten kann man die typischen Werkzeuge der Weißgerber entdecken. Finde sie und erzähle uns, was neben dem Stampfer als weiteres Werkzeug noch abgebildet ist!'
 p3.challenges.create!(question: c, difficulty: 3)
 challenge = p3.challenges.first
@@ -47,7 +47,7 @@ challenge.hints.create!(description: 'Die Werkzeuge sind an dem Haus mit der Hau
 # PLACE Kettensteg
 desc = 'Der Kettensteg wurde 1824 als erste frei schwebende Hängebrücke Deutschlands errichtet und misst etliche Meter. Damals entsprach sie einer echten Pionierleistung. ' +
     'Ursprünglich stand dort einmal ein hölzerner Trockensteg, der bereits auf einer Federzeichnung von Albrecht Dürer abgebildet ist.'
-p4 = Place.create(name: 'Kettensteg', description: desc, place_type: 0, city: city, lat: 49.457447, lng: 11.074014)
+p4 = Place.create(name: 'Kettensteg', description: desc, place_type: 0, city: city, lat: 49.454272, lng: 11.070902)
 c = 'Die Hängebrücke ist schon sehr lang. Aber wie lang denn nun genau?'
 p4.challenges.create!(question: c)
 challenge = p4.challenges.first
@@ -86,7 +86,7 @@ desc = 'Die Fleischbrücke ist nach dem Vorbild der Ponte die Rialot in Venedig 
     'Die einbogige Brücke galt somit als technische Meisterleistung. ' +
     'Auf der Nordseite befinden sich die so genannten Fleischbänke, auf denen die Metzger ihre Ware verkauften. ' +
     'Vom reichsstädtischen Fleischhaus aus dem Jahr 1571 sind nur noch die unteren Außenmauern orginal erhalten geblieben.'
-p7 = Place.create(name: 'An den Fleischbänken', description: desc, place_type: 0, city: city, lat: 49.453086, lng: 11.073051)
+p7 = Place.create(name: 'An den Fleischbänken', description: desc, place_type: 0, city: city, lat: 49.453042, lng: 11.076046)
 
 tour_1 = Tour.create!(name: 'Innenstad-Nord-Tour', city: city, description: 'Diese Tour verläuft hauptsächlich im Norden der Nürnberger Altstadt. Es sind nur kurze Wege von einem Ort zum Nächsten.')
 city.tours << tour_1
