@@ -15,6 +15,10 @@ class User < ApplicationRecord
     new { |u| u.guest! }
   end
 
+  def did_survey
+    self.surveys.any?
+  end
+
   private
     def create_user_tours
       self.tours=(Tour.all)
