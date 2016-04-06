@@ -5,7 +5,7 @@ country.cities << city
 country.save!
 
 # PLACE Kaiserburg
-desc = 'Über die Toranlage gelangt man in den äußeren Burghof - dort wird man einem einzigartigen Blick über die Altstadt belohnt! ' +
+desc = 'Über die Toranlage gelangt man in den äußeren Burghof - dort wird man mit einem einzigartigen Blick über die Altstadt belohnt! ' +
 'Du solltest auch einen Blick in den inneren Burgbereich werfen, der damals übrigens ausschließlich dem Kaiser während der Reichstage vorbehalten war. ' +
 'Heute kannst du hier das Kaiserburg-Museum oder den Palas besuchen, den tiefen Burggraben besichtigen oder den sogenannten Sinnweltturm besteigen.'
 p1 = Place.create!(name: 'Kaiserburg', description: desc, place_type: 0, city: city, lat: 49.457850, lng: 11.075858)
@@ -22,8 +22,8 @@ challenge.hints.create!(description: 'Wenn du die Hufeisen findest, ist die Antw
 
 
 # PLACE Tiergärtnerplatz
-desc = 'Nachdem du sich vom Aufstieg erholt und den Ausblick genossen haben, geht es weiter in Richtung Tiergärtnerplatz. ' +
-'Die Fachwerkhäuse blieben während des 2. Weltkriegs weitgehend verschont. ' +
+desc = 'Nachdem du dich vom Aufstieg erholt und den Ausblick genossen hast, geht es weiter in Richtung Tiergärtnerplatz. ' +
+'Die Fachwerkhäuser blieben während des 2. Weltkriegs weitgehend verschont. ' +
 'Der Platz ist in lauen Sommernächten ein beliebter Treffpunkt für junge Leute.'
 p2 = Place.create(name: 'Tiergärtnertorplatz', description: desc, place_type: 0, city: city, lat: 49.457447, lng: 11.074014)
 c = 'Vor dem Pilatushaus befindet sich eine Bronzeplastik. Hast du sie entdeckt? Erstellt wurde die Plastik von dem Künstler Jürgen Goertz im Jahr 1984. Welchem Künstler wurde sie gewidmet?'
@@ -32,6 +32,16 @@ challenge = p2.challenges.first
 challenge.challenge_solutions.create!(answer: 'Dürer', truth: true)
 challenge.hints.create!(description: 'Das Haus des Künstlers ist auch gleich in der Nähe. Hilft dir das weiter?')
 challenge.hints.create!(description: 'Der Nachname reicht bereits für eine korrekte Antwort. Achja, darin befindet sich ein Umlaut.')
+
+# PLACE St Sebald
+desc = 'St. Sebald ist die älteste Kirche Nürnbergs. Ihren Namen hat sie vom Heiligen Sebaldus der in Nürnberg geboren wurde und auch starb. ' +
+'Sein Grab befindet sich innerhalb der Pfarrkirche, ein filigranes Werk des 16. Jahrhunderts.'
+p8 = Place.create(name: 'St Sebald', description: desc, place_type: 0, city: city, lat: 49.455260, lng: 11.076602)
+c = 'Am Sebalder Platz gleich neben der Kirche befand sich früher ein Friedhof. Das Gebäude, welches sich darin befand, kann man noch erahnen, wenn man den Platz näher erkundet. Kommst du auf den Namen?'
+p8.challenges.create(question: c, difficulty: 2)
+challenge = p8.challenges.first
+challenge.challenge_solutions.create!(answer: 'Moritzkapelle', truth: true)
+challenge.hints.create!(description: 'Den Umriss kann man sehr gut an den großen Pflastersteinen erkennen. Vielleicht findest du dort einen Hinweis auf den Namen.')
 
 # PLACE Weißgerbergasse
 desc = 'Etwa 20 historische Häuser haben hier den Krieg überlebt und geben eine Vorstellung vom ursprünglichen Aussehen vieler Altstadtstraßen. ' +
@@ -70,23 +80,30 @@ challenge.challenge_solutions.create!(answer: 'Kaspar Hauser', truth: true)
 challenge.hints.create!(description: 'Manche Schilder in der Nähe weisen auf seinen Namen hin! Vor- und Nachnahme sind für die korrekte Antwort nötig.')
 
 # PLACE Henkersteg
-desc = 'Vom 16. bis 19. Jh. wohnte im Turm und dem gedeckten Wehrgang der Scharfrichter. ' +
+desc = 'Vom 16. bis 19. Jahrhundert wohnte im Turm und dem gedeckten Wehrgang der Scharfrichter. ' +
 "Aus Sorge der Nürnberger, sich durch Körperkontakt mit dem Henker als 'unehrlich' zu infizieren, musste er dort wohnen. " +
-'Im direkt anschließenden Henkerhaus ist heute ein Museum untergebracht, welches einen Besuch lohnt.'
+'Im direkt anschließenden Henkerhaus ist heute ein Museum zur Nürnberger Rechtsgeschichte untergebracht, welches einen Besuch lohnt.'
 p6 = Place.create(name: 'Henkersteg', description: desc, place_type: 0, city: city, lat: 49.453086, lng: 11.073051)
-c = 'Man kann einen sehr schönen Blick auf ein Fachwerkgebäude am gegenüberliegenden Ufer werfen. Heute ist es ein Studentenwohnheim, doch früher lebten Leprakranke darin. Wie heißt dieses Gebäude?'
+c = 'Man kann einen sehr schönen Blick auf ein Fachwerkgebäude am gegenüberliegenden Ufer werfen. Heute ist es ein Studentenwohnheim, doch früher war es ein Lepraspital. Wie wird es heute genannt?'
 p6.challenges.create!(question: c, difficulty: 3)
 challenge = p6.challenges.first
 challenge.challenge_solutions.create!(answer: 'Weinstadl', truth: true)
-challenge.hints.create!(description: 'Begib dich doch mal hin, oder befrage Leute in der Umgebung.')
+challenge.hints.create!(description: 'Begib dich hin und befrage Personen oder Studenten in der Umgebung.')
+challenge.hints.create!(description: "In dem 'Stadl' wurde früher auch einmal Wein gelagert.")
 
-# PLACE Fleischbänke
-desc = 'Die Fleischbrücke ist nach dem Vorbild der Ponte die Rialot in Venedig erbaut. ' +
-    'Noch heute steht sie auf einem Fundament von mehr als 2000 Eichenpfählen. ' +
-    'Die einbogige Brücke galt somit als technische Meisterleistung. ' +
+# PLACE Fleischbrücke
+desc = 'An der engsten Stelle des Pegnitzdurchflusses in Nürnberg, mit den stärksten Fließkräften der Pegnitz innerhalb der Stadtmauern, befindet sich die Fleischbrücke. ' +
+    'Sie wurde 1596 auf einem Fundament von mehr als 2100 Eichenpfählen erbaut, und galt somit als technische Meisterleistung. ' +
+    'Durch ihre Stabilität überstand die einbogige Brücke auch Bombentreffer aus dem 2. Weltkrieg unbeschadet. ' +
     'Auf der Nordseite befinden sich die so genannten Fleischbänke, auf denen die Metzger ihre Ware verkauften. ' +
     'Vom reichsstädtischen Fleischhaus aus dem Jahr 1571 sind nur noch die unteren Außenmauern orginal erhalten geblieben.'
-p7 = Place.create(name: 'An den Fleischbänken', description: desc, place_type: 0, city: city, lat: 49.453042, lng: 11.076046)
+p7 = Place.create(name: 'Fleischbrücke', description: desc, place_type: 0, city: city, lat: 49.452887, lng: 11.076782)
+c = 'Direkt im Anschluss an die Brücke befindet sich ein Portal, welches zu den Fleischbänken führt. Erkennst du, welches Tier darauf zu sehen ist?'
+p7.challenges.create!(question: c, difficulty: 3)
+challenge = p7.challenges.first
+challenge.challenge_solutions.create!(answer: 'Ochse', truth: true)
+challenge.hints.create!(description: 'Falls du latein kannst, solltest du schnell auf die Antwort kommen.')
+challenge.hints.create!(description: 'Der Stier wäre in diesem Kontext nicht ganz korrekt. Das Portal grenzt direkt am historischen Fleischhaus. Welche Tiere werden denn normalerweise geschlachtet?')
 
 tour_1 = Tour.create!(name: 'Innenstad-Nord-Tour', city: city, description: 'Diese Tour verläuft hauptsächlich im Norden der Nürnberger Altstadt. Es sind nur kurze Wege von einem Ort zum Nächsten.')
 city.tours << tour_1
@@ -96,6 +113,7 @@ city.save!
 
 tour_1.places << p1
 tour_1.places << p2
+tour_1.places << p8
 tour_1.places << p3
 tour_1.save!
 

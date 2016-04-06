@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321213618) do
+ActiveRecord::Schema.define(version: 20160405105735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,43 @@ ActiveRecord::Schema.define(version: 20160321213618) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "surveys", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "gender"
+    t.integer  "age"
+    t.integer  "how_many"
+    t.integer  "how_intentional"
+    t.boolean  "player_type_killer"
+    t.boolean  "player_type_achiever"
+    t.boolean  "player_type_explorer"
+    t.boolean  "player_type_socializer"
+    t.boolean  "game_type_self_expression_1"
+    t.boolean  "game_type_self_expression_2"
+    t.boolean  "game_type_competition_1"
+    t.boolean  "game_type_competition_2"
+    t.boolean  "game_type_conflict_1"
+    t.boolean  "game_type_conflict_2"
+    t.boolean  "game_type_cooperation_1"
+    t.boolean  "game_type_cooperation_2"
+    t.boolean  "game_type_coordination_1"
+    t.boolean  "game_type_coordination_2"
+    t.boolean  "gamification_tutorial"
+    t.boolean  "gamification_prefs"
+    t.string   "gamification_fast_start"
+    t.integer  "gamification_challenges_like"
+    t.integer  "gamification_hints_like"
+    t.integer  "gamification_give_feedback_like"
+    t.integer  "gamification_given_feedback_like"
+    t.integer  "gamification_rewards_like"
+    t.integer  "gamification_progress_like"
+    t.integer  "using_app"
+    t.text     "comment"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"

@@ -26,7 +26,7 @@ class UserTourChallengesController < ApplicationController
   # PATCH/PUT /tours/1
   def update
     if @user_tour_challenge.update(user_tour_challenge_params)
-      if @user_tour_challenge.challenge.challenge_solutions.where(truth: true).first.answer == params[:answer]
+      if params[:answer].present? && (@user_tour_challenge.challenge.challenge_solutions.where(truth: true).first.answer.downcase == params[:answer].downcase)
         @user_tour_challenge.solve
       elsif params[:hint_id].present?
         @user_tour_challenge.take_hint

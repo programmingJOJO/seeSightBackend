@@ -13,12 +13,20 @@ class UserTour < ApplicationRecord
     where(archived: false)
   }
 
+  scope :completed, -> {
+    where(completed: true)
+  }
+
   private
   def create_user_tour_places
     self.places=(self.tour.places)
   end
 
-  def rating
-    UserTour.not_archived.where(tour: self.tour).average(:rating).nil? ? 3 : UserTour.not_archived.where(tour: self.tour).average(:rating).ceil
+  def average_rating
+    UserTour.not_archived.completed.where(tour: self.tour).average(:rating).nil? ? 3 : UserTour.not_archived.completed.where(tour: self.tour).average(:rating).ceil
+  end
+
+  def has_pause
+    (!self.completed && !self.archived && self.user_tour_places.any?{|p| p.visited })
   end
 end

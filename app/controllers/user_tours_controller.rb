@@ -4,7 +4,11 @@ class UserToursController < ApplicationController
 
   # GET /tours
   def index
-    @user_tours = UserTour.where(user: current_user).not_archived.to_json(methods: :rating, include: { :tour => { methods: :rating, :include => :tags } })
+    @user_tours = UserTour.where(user: current_user).not_archived.to_json(
+        methods: [:average_rating, :has_pause],
+        include: { :tour => { methods: :rating, :include => :tags } },
+        except: [:updated_at, :created_at]
+    )
 
     render json: @user_tours
   end
@@ -42,6 +46,6 @@ class UserToursController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_tour_params
-      params.require(:user_tour).permit(:completed, :rating, :archived, )
+      params.require(:user_tour).permit(:completed, :rating, :archived)
     end
 end
