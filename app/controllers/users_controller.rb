@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: current_user.to_json({methods: :did_survey, include: :tags})
+    render json: current_user.to_json({methods: [:did_survey, :partially_visited_tours, :completed_tours, :unsolved_challenges], include: :tags})
   end
 
   # POST /users

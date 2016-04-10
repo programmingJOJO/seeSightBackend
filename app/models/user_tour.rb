@@ -17,6 +17,10 @@ class UserTour < ApplicationRecord
     where(completed: true)
   }
 
+  scope :partially_visited, -> {
+    joins(:user_tour_places).where(user_tour_places: { visited: true })
+  }
+
   private
   def create_user_tour_places
     self.places=(self.tour.places)
