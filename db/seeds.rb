@@ -1,9 +1,10 @@
-country = Country.find_or_create_by!(name: 'Deutschland', iso_code: 'de')
-city = City.find_or_build_city('Nürnberg')
-city.update_attributes!(lat: 49.45052, lng: 11.08048)
-country.cities << city
-country.save!
 
+#country = Country.find_or_create_by!(name: 'Deutschland', iso_code: 'de')
+#city = City.find_or_build_city('Nürnberg')
+#city.update_attributes!(lat: 49.45052, lng: 11.08048)
+#country.cities << city
+#country.save!
+=begin
 # PLACE Kaiserburg
 desc = 'Über die Toranlage gelangt man in den äußeren Burghof - dort wird man mit einem einzigartigen Blick über die Altstadt belohnt! ' +
 'Du solltest auch einen Blick in den inneren Burgbereich werfen, der damals übrigens ausschließlich dem Kaiser während der Reichstage vorbehalten war. ' +
@@ -139,5 +140,85 @@ tour_2.tags << t2
 tour_2.tags << t4
 tour_2.tags << t5
 tour_2.save!
+=end
+
+##### Tours without challenges
+
+tour_3 = Tour.create!(name: 'Einfache Innenstad-Tour', has_challenges: false, city: city, description: 'Diese Tour verläuft hauptsächlich im Norden der Nürnberger Altstadt. Es sind nur kurze Wege von einem Ort zum Nächsten.')
+city.tours << tour_3
+city.save
+
+# PLACE Kaiserburg
+desc = 'Über die Toranlage gelangt man in den äußeren Burghof - dort wird man mit einem einzigartigen Blick über die Altstadt belohnt! ' +
+    'Du solltest auch einen Blick in den inneren Burgbereich werfen, der damals übrigens ausschließlich dem Kaiser während der Reichstage vorbehalten war. ' +
+    'Heute kannst du hier das Kaiserburg-Museum oder den Palas besuchen, den tiefen Burggraben besichtigen oder den sogenannten Sinnweltturm besteigen.' +
+    'In der Burgmauer nahe des Fünfeck-Turmes befinden sich zwei Hufabdrücke. Der Sage nach gab es einst einen Raubritter ' +
+    'namens Eppelein. Kurz vor seiner Hinrichtung wurde ihm ein letzter Wunsch erfüllt. Eppelein wollte noch einmal auf seinem Pferd sitzen. ' +
+    'Beim Sitzen blieb es jedoch nicht: Eppelein soll durch einen tollkühnen Sprung mit dem Pferd über den Burggraben entwischt sein - und somit die Hufabdrücke in der Burgmauer hinterlassen haben.'
+tour3_p1 = Place.create!(name: 'Kaiserburg', description: desc, place_type: 1, city: city, lat: 49.457850, lng: 11.075858)
+
+# PLACE Tiergärtnerplatz
+desc = 'Nachdem du dich vom Aufstieg erholt und den Ausblick genossen hast, geht es weiter in Richtung Tiergärtnerplatz. ' +
+    'Die Fachwerkhäuser blieben während des 2. Weltkriegs weitgehend verschont. ' +
+    'Der Platz ist in lauen Sommernächten ein beliebter Treffpunkt für junge Leute. ' +
+    'Vor dem Pilatushaus befindet sich eine Bronzeplastik. Erstellt wurde die Plastik von dem Künstler Jürgen Goertz im Jahr 1984 und wurde Albrecht Dürer gewidmet.'
+tour3_p2 = Place.create(name: 'Tiergärtnertorplatz', description: desc, place_type: 1, city: city, lat: 49.457447, lng: 11.074014)
+
+# PLACE St Sebald
+desc = 'St. Sebald ist die älteste Kirche Nürnbergs. Ihren Namen hat sie vom Heiligen Sebaldus der in Nürnberg geboren wurde und auch starb. ' +
+    'Sein Grab befindet sich innerhalb der Pfarrkirche, ein filigranes Werk des 16. Jahrhunderts. ' +
+    'Am Sebalder Platz gleich neben der Kirche befand sich früher ein Friedhof. Das Gebäude, welches sich darin befand, kann man noch erahnen, wenn man den Platz näher erkundet. Es handelte sich um die Moritzkapelle.'
+tour3_p8 = Place.create(name: 'St Sebald', description: desc, place_type: 1, city: city, lat: 49.455260, lng: 11.076602)
+
+# PLACE Weißgerbergasse
+desc = 'Etwa 20 historische Häuser haben hier den Krieg überlebt und geben eine Vorstellung vom ursprünglichen Aussehen vieler Altstadtstraßen. ' +
+    'Wie der Name schon sagt, lebten in dieser Gasse vorwiegend Weißgerber, die mit Hilfe von Alaun (Kaliumaluminiumsulfat) feines Leder herstellten. ' +
+    'Heute ist die Weißgerbergasse ein beliebtes Kneipenviertel. ' +
+    'An einer der Häuserfronten kann man die typischen Werkzeuge der Weißgerber entdecken. Es handelt dabei sich um Stampfer und Messer.'
+tour3_p3 = Place.create(name: 'Weißgerbergasse', description: desc, place_type: 1, city: city, lat: 49.455180, lng: 11.072795)
+
+tour_3.places << tour3_p1
+tour_3.places << tour3_p2
+tour_3.places << tour3_p8
+tour_3.places << tour3_p3
+tour_3.save!
 
 
+tour_4 = Tour.create!(name: 'Einfache Pegnitz-Tour', has_challenges: false, city: city, description: 'Diese Tour zeigt interessante Gegenden entlang der Pegniz.')
+city.tours << tour_4
+city.save
+
+# PLACE Kettensteg
+desc = 'Der Kettensteg wurde 1824 als erste frei schwebende Hängebrücke Deutschlands errichtet und misst stolze 80 Meter. Damals entsprach sie einer echten Pionierleistung. ' +
+    'Ursprünglich stand dort einmal ein hölzerner Trockensteg, der bereits auf einer Federzeichnung von Albrecht Dürer abgebildet ist.'
+tour4_p4 = Place.create(name: 'Kettensteg', description: desc, place_type: 1, city: city, lat: 49.454272, lng: 11.070902)
+
+# PLACE Unschlittplatz
+desc = 'Der Name des Platzes und des darauf stehenden Unschlitthauses geht zurück bis ins Jahr 1562, als dort das Unschlittamt untergebracht wurde. ' +
+    'Es fungierte als städtische Monopolbehörde für nicht genießbares Abfallfett (Unschlitt). ' +
+    'Alle Metzger der Stadt mussten ihren Unschlitt hier abgeben, während es die Stadt zu festen Preisen an andere Gewerbe weiterverkaufte. ' +
+    'Bis ins 19. Jh. war Unschlitt ein bedeutender Rohstoff für Kerzen. ' +
+    'Historische Bedeutung und Bekanntheit erlangte der Platz durch die rätselhafte Person Kaspar Hauser. Für sie wurde eigens eine Gedenktafel angebracht.'
+tour4_p5 = Place.create(name: 'Unschlittplatz', description: desc, place_type: 1, city: city, lat: 49.452697, lng: 11.072204)
+
+# PLACE Henkersteg
+desc = 'Vom 16. bis 19. Jahrhundert wohnte im Turm und dem gedeckten Wehrgang der Scharfrichter. ' +
+    "Aus Sorge der Nürnberger, sich durch Körperkontakt mit dem Henker als 'unehrlich' zu infizieren, musste er dort wohnen. " +
+    'Im direkt anschließenden Henkerhaus ist heute ein Museum zur Nürnberger Rechtsgeschichte untergebracht, welches einen Besuch lohnt. ' +
+    'Man kann einen sehr schönen Blick auf ein Fachwerkgebäude am gegenüberliegenden Ufer werfen. Heute ist der Weinstadl ein Studentenwohnheim, doch früher war es ein Lepraspital.'
+tour4_p6 = Place.create(name: 'Henkersteg', description: desc, place_type: 1, city: city, lat: 49.453086, lng: 11.073051)
+
+# PLACE Fleischbrücke
+desc = 'An der engsten Stelle des Pegnitzdurchflusses in Nürnberg, mit den stärksten Fließkräften der Pegnitz innerhalb der Stadtmauern, befindet sich die Fleischbrücke. ' +
+    'Sie wurde 1596 auf einem Fundament von mehr als 2100 Eichenpfählen erbaut, und galt somit als technische Meisterleistung. ' +
+    'Durch ihre Stabilität überstand die einbogige Brücke auch Bombentreffer aus dem 2. Weltkrieg unbeschadet. ' +
+    'Auf der Nordseite befinden sich die so genannten Fleischbänke, auf denen die Metzger ihre Ware verkauften. ' +
+    'Vom reichsstädtischen Fleischhaus aus dem Jahr 1571 sind nur noch die unteren Außenmauern orginal erhalten geblieben.' +
+    'Direkt im Anschluss an die Brücke befindet sich das Ochsen-Portal, welches zu den Fleischbänken führt.'
+tour4_p7 = Place.create(name: 'Fleischbrücke', description: desc, place_type: 1, city: city, lat: 49.452887, lng: 11.076782)
+
+tour_4.places << tour4_p4
+tour_4.places << tour4_p5
+tour_4.places << tour4_p6
+tour_4.places << tour4_p7
+tour_4.save!
