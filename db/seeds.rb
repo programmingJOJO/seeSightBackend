@@ -1,6 +1,6 @@
 
 #country = Country.find_or_create_by!(name: 'Deutschland', iso_code: 'de')
-#city = City.find_or_build_city('Nürnberg')
+city = City.find_or_build_city('Nürnberg')
 #city.update_attributes!(lat: 49.45052, lng: 11.08048)
 #country.cities << city
 #country.save!
