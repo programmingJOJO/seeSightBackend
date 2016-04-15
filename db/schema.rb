@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415145012) do
+ActiveRecord::Schema.define(version: 20160415160818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,8 +138,14 @@ ActiveRecord::Schema.define(version: 20160415145012) do
     t.integer  "gamification_progress_like"
     t.integer  "using_app"
     t.text     "comment"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "has_gamification",                  default: true,  null: false
+    t.boolean  "did_test_already",                  default: false, null: false
+    t.integer  "tour_was_more_motivatable"
+    t.text     "tour_was_more_motivatable_comment"
+    t.integer  "rating_about_gamification"
+    t.text     "rating_about_gamification_comment"
   end
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree

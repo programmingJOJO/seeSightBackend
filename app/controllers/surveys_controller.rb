@@ -77,7 +77,14 @@ class SurveysController < ApplicationController
           :gamification_rewards_like,
           :gamification_progress_like,
           :using_app,
-          :comment
+          :comment,
+          :has_gamification,
+          :has_gamification,
+          :did_test_already,
+          :tour_was_more_motivatable,
+          :tour_was_more_motivatable_comment,
+          :rating_about_gamification,
+          :rating_about_gamification_comment
       )
     end
 end
