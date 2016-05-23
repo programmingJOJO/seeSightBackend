@@ -1,24 +1,15 @@
-## README
+## API-Backend zu SeeSight
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Dies ist das API-Backend zur App-Awendung SeeSight. Zur Inbetriebnahme, laden Sie die Anwendung am Besten auf Heroku und folgen Sie den dortigen Anweisungen. Für einen schnellen Zugriff ist die Anwendung auch unter seesight.herokuapp.com abrufbar.
 
-Things you may want to cover:
+Für einen lokalen Betrieb achten Sie bitte auf folgende Anforderungen:
 
-* Ruby version
+* Installation einer Ruby-Version >= 2.3.0
 
-* System dependencies
+* Installation benötigter Gems: bin/bundle install
 
-* Configuration
+* Start des lokalen Servers: rails s
 
-* Database creation
+* Abrufbar unter localhost:3000
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Bei weiteren Fragen bitte an: koelblJo45514@th-nuernberg.de
