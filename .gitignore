@@ -21,7 +21,7 @@
 .byebug_history
 
 .ruby-version
-.idea
+.idea/
 .gitignore
 config/database.yml
 
